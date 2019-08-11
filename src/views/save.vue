@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-app-bar clipped-right dense flat collapse-on-scroll app>
+    <v-app-bar bottom clipped-right dense flat collapse-on-scroll app>
       <v-spacer></v-spacer>
       <v-toolbar-title class="headline text-uppercase">
         <span>Vuetifyd</span>
@@ -45,24 +45,6 @@
     <v-content>
       <router-view></router-view>
     </v-content>
-
-    <v-bottom-navigation v-model="bottomNav" grow>
-      <v-btn value="recent">
-        <span>Recent</span>
-        <v-icon>mdi-history</v-icon>
-      </v-btn>
-
-      <v-btn value="favorites">
-        <span>Favorites</span>
-        <v-icon>mdi-heart</v-icon>
-      </v-btn>
-
-      <v-btn value="nearby">
-        <span>Nearby</span>
-        <v-icon>mdi-map-marker</v-icon>
-      </v-btn>
-    </v-bottom-navigation>
-
   </v-app>
 </template>
 
@@ -73,7 +55,6 @@ export default {
   data () {
     return {
       drawer: false,
-      bottomNav: 'recent',
       items: [
         { title: 'Dashboard', icon: 'mdi-view-dashboard' },
         { title: 'Photos', icon: 'mdi-image' },
