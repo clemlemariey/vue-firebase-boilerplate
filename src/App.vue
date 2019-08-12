@@ -46,6 +46,8 @@
       <router-view></router-view>
     </v-content>
 
+    <CustomDrawer :drawer="drawer" />
+
     <v-bottom-navigation v-model="bottomNav" grow>
       <v-btn value="recent">
         <span>Recent</span>
@@ -61,24 +63,25 @@
         <span>Nearby</span>
         <v-icon>mdi-map-marker</v-icon>
       </v-btn>
+
+      <v-btn @click.stop="drawer = !drawer" value="menu">
+        <v-icon>mdi-menu</v-icon>
+      </v-btn>
     </v-bottom-navigation>
 
   </v-app>
 </template>
 
 <script>
-
+import CustomDrawer from './components/CustomDrawer'
 export default {
   name: 'App',
+  components: {
+    CustomDrawer
+  },
   data () {
     return {
-      drawer: false,
-      bottomNav: 'recent',
-      items: [
-        { title: 'Dashboard', icon: 'mdi-view-dashboard' },
-        { title: 'Photos', icon: 'mdi-image' },
-        { title: 'About', icon: 'mdi-help-box' }
-      ]
+      drawer: false
     }
   }
 }
