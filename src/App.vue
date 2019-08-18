@@ -10,43 +10,39 @@
       <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
     </v-app-bar>
 
-    <v-navigation-drawer v-model="drawer" right app>
-      <v-list dense nav class="py-0">
-        <v-list-item two-line>
-          <v-list-item-avatar>
-            <img src="https://randomuser.me/api/portraits/men/81.jpg">
-          </v-list-item-avatar>
-
-          <v-list-item-content>
-            <v-list-item-title>Application</v-list-item-title>
-            <v-list-item-subtitle>Subtext</v-list-item-subtitle>
-          </v-list-item-content>
-        </v-list-item>
-
-        <v-divider></v-divider>
-
-        <v-list-item v-for="item in items" :key="item.title" link>
-          <v-list-item-icon>
-            <v-icon>{{ item.icon }}</v-icon>
-          </v-list-item-icon>
-
-          <v-list-item-content>
-            <v-list-item-title>{{ item.title }}</v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
-      </v-list>
-      <template v-slot:append>
-        <div class="pa-2">
-          <v-btn block @click.stop="drawer = !drawer"><v-icon>mdi-close</v-icon></v-btn>
-        </div>
-      </template>
-    </v-navigation-drawer>
-
     <v-content>
       <router-view></router-view>
     </v-content>
 
-    <CustomDrawer :drawer="drawer" />
+    <v-navigation-drawer v-model="drawer" right app>
+      <template v-slot:append>
+        <div class="pa-2">
+          <v-list nav class="py-0">
+            <v-list-item two-line>
+              <v-list-item-avatar>
+                <img src="https://randomuser.me/api/portraits/men/81.jpg">
+              </v-list-item-avatar>
+
+              <v-list-item-content>
+                <v-list-item-title>Application</v-list-item-title>
+                <v-list-item-subtitle>Subtext</v-list-item-subtitle>
+              </v-list-item-content>
+            </v-list-item>
+
+            <v-list-item v-for="item in items" :key="item.title" link>
+              <v-list-item-icon>
+                <v-icon>{{ item.icon }}</v-icon>
+              </v-list-item-icon>
+
+              <v-list-item-content>
+                <v-list-item-title>{{ item.title }}</v-list-item-title>
+              </v-list-item-content>
+            </v-list-item>
+          </v-list>
+          <v-btn block @click.stop="drawer = !drawer"><v-icon>mdi-close</v-icon></v-btn>
+        </div>
+      </template>
+    </v-navigation-drawer>
 
     <v-bottom-navigation v-model="bottomNav" grow>
       <v-btn value="recent">
@@ -73,15 +69,17 @@
 </template>
 
 <script>
-import CustomDrawer from './components/CustomDrawer'
 export default {
   name: 'App',
-  components: {
-    CustomDrawer
-  },
   data () {
     return {
-      drawer: false
+      drawer: false,
+      bottomNav: 'recent',
+      items: [
+        { title: 'Dashboard', icon: 'mdi-view-dashboard' },
+        { title: 'Photos', icon: 'mdi-image' },
+        { title: 'About', icon: 'mdi-help-box' }
+      ]
     }
   }
 }
